@@ -1,8 +1,5 @@
 package com.fy.ssh.repository.jdbc;
 
-
-
-
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -20,32 +17,23 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import oracle.jdbc.OracleTypes;
 
 /**
  * @author yinbin <br/>
  *         DBUtil，数据库访问工具类<br/>
- *         对应测试类： {@link DBUtilTest}
  * @preserve all
  */
 public class DBUtil {
 
-	private static Connection con = null;
-
 	public static Connection openConnection() throws SQLException, ClassNotFoundException, IOException {
-		if (null == con || con.isClosed()) {
-			Properties p = new Properties();
-			p.load(DBUtil.class.getResourceAsStream("/config-db.properties"));
-			Class.forName(p.getProperty("db_driver"));
-			con = DriverManager.getConnection(p.getProperty("db_url"), p.getProperty("db_username"),
-					p.getProperty("db_password"));
-		}
-		return con;
+		// todo 自己修改
+		Class.forName("");
+		return DriverManager.getConnection("", "", "");
 	}
 
-	public static void closeConnection() throws SQLException {
+	public static void closeConnection(Connection con) throws SQLException {
 		try {
 			if (null != con)
 				con.close();
@@ -491,15 +479,17 @@ public class DBUtil {
 		return llists;
 	}
 
-/*	public static void executeProcedure(Connection con, String sql) {
-		CallableStatement callStmt = null;
-		try {
-			callStmt = con.prepareCall(sql);
-			callStmt.exe
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}*/
+	/*
+	 * public static void executeProcedure(Connection con, String sql) {
+	 * CallableStatement callStmt = null;
+	 * try {
+	 * callStmt = con.prepareCall(sql);
+	 * callStmt.exe
+	 * } catch (Exception e) {
+	 * e.printStackTrace();
+	 * }
+	 * 
+	 * }
+	 */
 
 }
